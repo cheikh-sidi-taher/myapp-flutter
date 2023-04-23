@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'layout/home_layout.dart';
 import 'modules/bmi/bmiScreen.dart';
 import 'modules/counter/counterScreen.dart';
 import 'modules/home/homeScreen.dart';
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
      debugShowCheckedModeBanner: false,
-      home:loginScreen(),
+      home:HomeLayout(),
       
     );
   }
