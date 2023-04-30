@@ -33,3 +33,40 @@ Widget DfaultButton({
          color: background,
         ),
     );
+
+
+    Widget buildTaskTtem(Map Model) => Padding(
+      padding: const EdgeInsets.all(20.0),
+      child: Row(
+        children: [
+          CircleAvatar(
+            radius: 40.0,
+            child: Text('${Model['title']}'),
+            
+          ),
+    
+          SizedBox(
+            width: 20.0,
+          ),
+    
+          Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                '${Model['time']}',
+                style: TextStyle(
+                  fontSize: 18.0,
+                  fontWeight: FontWeight.bold
+                ),
+                ),
+                Text(
+               '${Model['date']}',
+                style: TextStyle(
+                 color: Colors.grey
+                ),
+                )
+            ],
+          )
+        ],
+      ),
+    );
