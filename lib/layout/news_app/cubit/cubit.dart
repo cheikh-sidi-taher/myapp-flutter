@@ -31,12 +31,7 @@ class NewsCubit extends Cubit<NewsStates> {
           Icons.science,
         ),
         label: 'Scinece'),
-    BottomNavigationBarItem(
-        icon: Icon(
-          Icons.settings,
-        ),
-        label: 'Settings')
-  ];
+     ];
 
 // list of screen
 
@@ -44,7 +39,7 @@ class NewsCubit extends Cubit<NewsStates> {
     BusinessScreen(),
     SportScreen(),
     ScienceScreen(),
-    SettingScreen()
+    
   ];
 
   void changeBottomNavBar(int index) {
@@ -134,8 +129,36 @@ class NewsCubit extends Cubit<NewsStates> {
   }
 
   }
+
+
+
+  // GET Search
+
+
+  List<dynamic> search = [];
+
+  void getsearch(String? value) {
+    emit(NewsGetSearchLoadingState());
+
+    
+
+    DioHelper.getData(url: 'v2/everything', query: {
+     
+      'q':'$value',
+      'apiKey': 'ba5a4b6a4dea4f45a0d893b8a9bd3b27',
+    }).then((value) {
+     // print(value.data['articles']);
+      search = value.data['articles'];
+      print(search[0]['title']);
+      emit(NewsGetSearchSucccessState());
+    }).catchError((error) {
+      print(error.toString());
+      emit(NewsGetSearchErrorState(error.toString()));
+    });
+
 }
 
 
 // }
 
+}

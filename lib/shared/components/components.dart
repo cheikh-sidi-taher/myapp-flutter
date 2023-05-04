@@ -61,7 +61,7 @@ Widget buildTaskTtem(Map Model) => Padding(
     );
 
 /// components articleItem
-Widget buildArticleItem(article) => Padding(
+Widget buildArticleItem(article, context) => Padding(
       padding: const EdgeInsets.all(20.0),
       child: Row(
         children: [
@@ -88,13 +88,11 @@ Widget buildArticleItem(article) => Padding(
                   Expanded(
                     child: Text(
                       '${article['title']}',
-                      style:
-                          TextStyle(fontSize: 20.0, fontWeight: FontWeight.w600),
+                      style: Theme.of(context).textTheme.bodyMedium,
                       maxLines: 4,
                       overflow: TextOverflow.ellipsis,
                     ),
                   ),
-                 
                   Text(
                     '${article['publishedAt']}',
                     style: TextStyle(color: Colors.grey),
@@ -108,19 +106,21 @@ Widget buildArticleItem(article) => Padding(
     );
 
 /// articleBuilder
-   Widget articleBuilder(list) =>  ConditionalBuilder(
-            condition: list.length > 0,
-            builder: (context) => ListView.separated(
-              physics: BouncingScrollPhysics(),
-              itemBuilder: (context , index) => buildSciencesItem(list[index]),
-             separatorBuilder: (context , index) => myDivider(),
-             itemCount: 10,) ,
-            fallback: (context) => Center(child: CircularProgressIndicator()),
-          
-        );
-    /// BuilsSoprtsItem
-  
-  Widget buildSportsItem(article) => Padding(
+Widget articleBuilder(list, context) => ConditionalBuilder(
+      condition: list.length > 0,
+      builder: (context) => ListView.separated(
+        physics: BouncingScrollPhysics(),
+        itemBuilder: (context, index) =>
+            buildSciencesItem(list[index], context),
+        separatorBuilder: (context, index) => myDivider(),
+        itemCount: 10,
+      ),
+      fallback: (context) => Center(child: CircularProgressIndicator()),
+    );
+
+/// BuilsSoprtsItem
+
+Widget buildSportsItem(article) => Padding(
       padding: const EdgeInsets.all(20.0),
       child: Row(
         children: [
@@ -147,13 +147,12 @@ Widget buildArticleItem(article) => Padding(
                   Expanded(
                     child: Text(
                       '${article['title']}',
-                      style:
-                          TextStyle(fontSize: 20.0, fontWeight: FontWeight.w600),
+                      style: TextStyle(
+                          fontSize: 20.0, fontWeight: FontWeight.w600),
                       maxLines: 4,
                       overflow: TextOverflow.ellipsis,
                     ),
                   ),
-                 
                   Text(
                     '${article['publishedAt']}',
                     style: TextStyle(color: Colors.grey),
@@ -166,8 +165,7 @@ Widget buildArticleItem(article) => Padding(
       ),
     );
 
-
-    Widget buildSciencesItem(article) => Padding(
+Widget buildSciencesItem(article, BuildContext context) => Padding(
       padding: const EdgeInsets.all(20.0),
       child: Row(
         children: [
@@ -194,13 +192,12 @@ Widget buildArticleItem(article) => Padding(
                   Expanded(
                     child: Text(
                       '${article['title']}',
-                      style:
-                          TextStyle(fontSize: 20.0, fontWeight: FontWeight.w600),
+                      style: TextStyle(
+                          fontSize: 20.0, fontWeight: FontWeight.w600),
                       maxLines: 4,
                       overflow: TextOverflow.ellipsis,
                     ),
                   ),
-                 
                   Text(
                     '${article['publishedAt']}',
                     style: TextStyle(color: Colors.grey),
@@ -213,16 +210,17 @@ Widget buildArticleItem(article) => Padding(
       ),
     );
 
-
-
-
-    Widget myDivider() => Padding(
+Widget myDivider() => Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
-                width: double.infinity,
-                height: 3,
-                color: Colors.grey,
-                
-              
-               ),
+        width: double.infinity,
+        height: 3,
+        color: Colors.grey,
+      ),
     );
+
+void navigateTo(context, widget) => Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (context) => widget,
+    ));

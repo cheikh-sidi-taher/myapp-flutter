@@ -298,14 +298,14 @@ class _BmiScreenState extends State<BmiScreen> {
                 double result = weight / pow(height/ 100,2);
                 print(result.round());
 
-                Navigator.push(context,
-                 MaterialPageRoute(
-                  builder: (context)  => BmiResultScreen(
-                    age: age,
-                    isMale: isMale,
-                    result: result.round(),
-                  ),
-                  ));
+                // Navigator.push(context,
+                //  MaterialPageRoute(
+                //   builder: (context)  => BmiResultScreen(
+                //     age: age,
+                //     isMale: isMale,
+                //     result: result.round(),
+                //   ),
+                //   ));
               },
               height: 50.0,
               child: Text(
